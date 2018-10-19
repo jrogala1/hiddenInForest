@@ -1,4 +1,7 @@
-# lab1
+# lab2
+
+To be done before 21.10.2018 - exepction handler
+
 
 You're a junior java developer in a company called Mex. Your first assignment is to write a simple program that'll generate
 email addresses for new employees. Email address should be build using following patter: surname.name@mex.com
