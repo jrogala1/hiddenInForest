@@ -2,31 +2,41 @@ package com.company.app;
 
 import com.company.app.logic.*;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.rmi.server.ExportException;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        userInput employee = new userInput();
 
-        Scanner input = new Scanner(System.in);
+        try
+        {
+            userInput employee = new userInput();
 
-        System.out.println("Console program for Mex Company \nPlease enter data below to generate email address for new employee.");
+            Scanner input = new Scanner(System.in);
 
-        System.out.println("Enter user name:");
+            System.out.println("Console program for Mex Company \nPlease enter data below to generate email address for new employee.");
 
-        employee.name = input.nextLine();
+            System.out.println("Enter user name:");
+            employee.name = input.nextLine();
 
-        System.out.println(employee.checkInput(employee.name));
+            if(employee.checkInput(employee.name) == -1 ) throw new Exception("Your input is invalid. You can only type a word consisting of the characters of the Polish alphabet");
 
-        System.out.println("Enter user surname:");
+            System.out.println("Enter user surname:");
+            employee.surname = input.nextLine();
 
-        employee.surname = input.nextLine();
-        String s = employee.generateEmail();
-        System.out.println("Generated email: " + s);
+            if(employee.checkInput(employee.surname) == -1 ) throw new Exception("Your input is invalid. You can only type a word consisting of the characters of the Polish alphabet");
+
+            String s = employee.generateEmail();
+            System.out.println("Generated email: " + s);
+
+        } catch (Exception e)
+        {
+            System.out.println(e);
+        }
+
 
 
 

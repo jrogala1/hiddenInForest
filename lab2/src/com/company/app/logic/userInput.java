@@ -12,7 +12,7 @@ public class userInput {
 
 
     private static final String domain = "@mex.com";
-    private static String pattern = "[A-Za-z0-9]+";
+    private static String pattern = "[A-Za-ząęóśńżźł]+";
 
     public userInput()
     {
