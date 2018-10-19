@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class fileChecker extends userInput{
 
-    File file = new File("G:/Users/Jakub/Documents/GitHub/wszibjava/lab2/src/emails.txt");
+    File file = new File("G:/Users/Jakub/Documents/GitHub/wszibjava/lab2/src/emails.txt"); //Enter file location in this line
 
     public int read(String email) throws FileNotFoundException {
 
