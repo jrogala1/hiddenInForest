@@ -55,7 +55,6 @@ public class Controller {
                             if (save == true) {
                                 button.setStyle("-fx-background-color: green");
                                 for (int i = 1; i <= shipsize - 1; i++) {
-                                    System.out.println(isVertical);
                                     getNodeByRowColumnIndex(GridPane.getRowIndex(button), GridPane.getColumnIndex(button) + i, userGrid).setStyle("-fx-background-color: green");
                                 }
 
@@ -121,7 +120,7 @@ public class Controller {
             @Override
             public void handle(MouseEvent event) {
                 MouseButton button = event.getButton();
-                if (!isVertical) {
+                if (isVertical == true && button == MouseButton.PRIMARY) {
                     for (Node node : userGrid.getChildren()) {
                         if (node instanceof Button) {
                             if (node.getBoundsInParent().contains(event.getX(), event.getY())) {
@@ -134,9 +133,9 @@ public class Controller {
                                         node.setStyle("-fx-background-color: green");
                                         node.setDisable(true);
                                         for (int size = 1; size <= shipsize - 1; size++) {
-                                            getNodeByRowColumnIndex(GridPane.getRowIndex(node) + size, GridPane.getColumnIndex(node), userGrid).setStyle("-fx-background-color: green");
-                                            getNodeByRowColumnIndex(GridPane.getRowIndex(node) + size, GridPane.getColumnIndex(node), userGrid).setDisable(true);
-                                            getNodeByRowColumnIndex(GridPane.getRowIndex(node) + size, GridPane.getColumnIndex(node), userGrid).setId("set");
+                                            getNodeByRowColumnIndex(GridPane.getRowIndex(node), GridPane.getColumnIndex(node) + size, userGrid).setStyle("-fx-background-color: green");
+                                            getNodeByRowColumnIndex(GridPane.getRowIndex(node), GridPane.getColumnIndex(node) + size, userGrid).setDisable(true);
+                                            getNodeByRowColumnIndex(GridPane.getRowIndex(node), GridPane.getColumnIndex(node) + size, userGrid).setId("set");
                                         }
                                         //save = true;
 
@@ -145,7 +144,7 @@ public class Controller {
                             }
                         }
                     }
-                } else {
+                } else if (isVertical == false && button == MouseButton.PRIMARY){
                     for (Node node : userGrid.getChildren()) {
                         if (node instanceof Button) {
                             if (node.getBoundsInParent().contains(event.getX(), event.getY())) {
@@ -158,9 +157,9 @@ public class Controller {
                                         node.setStyle("-fx-background-color: green");
                                         node.setDisable(true);
                                         for (int size = 1; size <= shipsize - 1; size++) {
-                                            getNodeByRowColumnIndex(GridPane.getRowIndex(node), GridPane.getColumnIndex(node) + size, userGrid).setStyle("-fx-background-color: green");
-                                            getNodeByRowColumnIndex(GridPane.getRowIndex(node), GridPane.getColumnIndex(node) + size, userGrid).setDisable(true);
-                                            getNodeByRowColumnIndex(GridPane.getRowIndex(node), GridPane.getColumnIndex(node) + size, userGrid).setId("set");
+                                            getNodeByRowColumnIndex(GridPane.getRowIndex(node) + size, GridPane.getColumnIndex(node), userGrid).setStyle("-fx-background-color: green");
+                                            getNodeByRowColumnIndex(GridPane.getRowIndex(node) + size, GridPane.getColumnIndex(node), userGrid).setDisable(true);
+                                            getNodeByRowColumnIndex(GridPane.getRowIndex(node) + size, GridPane.getColumnIndex(node), userGrid).setId("set");
                                         }
                                        // save = true;
 
