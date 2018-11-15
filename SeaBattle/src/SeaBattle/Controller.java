@@ -287,14 +287,33 @@ public class Controller {
                 if (getNodeByRowColumnIndex(GridPane.getRowIndex(ship[0]), GridPane.getColumnIndex(ship[0]) - 1, userGrid).getId() == "set")
                     return false;
             }
+
+            if (getNodeByRowColumnIndex(GridPane.getRowIndex(ship[0]), GridPane.getColumnIndex(ship[0]), userGrid).getId() == "set")
+            {
+                return true;
+            }
+
             if((GridPane.getRowIndex(ship[shipsize-1])+1) < 10) {
                 if (getNodeByRowColumnIndex(GridPane.getRowIndex(ship[shipsize - 1]), GridPane.getColumnIndex(ship[shipsize - 1]) + 1, userGrid).getId() == "set")
                     return false;
             }
-            for ( Node node : ship)
+
+            if (getNodeByRowColumnIndex(GridPane.getRowIndex(ship[shipsize - 1]), GridPane.getColumnIndex(ship[shipsize - 1]), userGrid).getId() == "set")
             {
-                if(getNodeByRowColumnIndex(GridPane.getRowIndex(node)+1, GridPane.getColumnIndex(node), userGrid).getId() == "set") return false;
-                if(getNodeByRowColumnIndex(GridPane.getRowIndex(node)-1, GridPane.getColumnIndex(node), userGrid).getId() == "set") return false;
+                return true;
+            }
+
+            for ( Node node : ship )
+            {
+                if(GridPane.getRowIndex(node) == 0) {
+                    if (getNodeByRowColumnIndex(GridPane.getRowIndex(node), GridPane.getColumnIndex(node), userGrid).getId() == "set")
+                        return false;
+                }
+
+                if(GridPane.getRowIndex(node) == 9) {
+                    if (getNodeByRowColumnIndex(GridPane.getRowIndex(node) - 1, GridPane.getColumnIndex(node), userGrid).getId() == "set")
+                        return false;
+                }
             }
         }
         else
