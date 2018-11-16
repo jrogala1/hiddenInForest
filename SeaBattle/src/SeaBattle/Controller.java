@@ -22,14 +22,14 @@ import java.util.Random;
 
 public class Controller {
 
-    public int[] shipSize = {1,1,2,3,4};
-    private int[] enemyShipSize = {1,1,2,3,4};
+    public int[] shipSize = {1,1,1,1,2,2,2,3,3,4};
+    private int[] enemyShipSize = {1,1,1,1,2,2,2,3,3,4};
     public int element = 0;
     List<Integer> ships = new ArrayList<Integer>();
     private boolean save = true;
     private boolean isVertical = true;
     private int gamestatus = 0;
-    private int enemyShips = 5;
+    private int enemyShips = 10;
     private Random random = new Random();
     private int lifeOnBeginning;
     private int life;
@@ -45,8 +45,6 @@ public class Controller {
     private GridPane aiGrid;
     @FXML
     private Button newGame;
-    @FXML
-    private Button colors;
     @FXML
     private Label notification;
     @FXML
@@ -87,7 +85,7 @@ public class Controller {
                                     }
 
                                     shipsPlaced(element);
-
+                                    notification.setText("Set ship size " + (ships.get(element)));
                                 }
                             }
                         }
@@ -107,9 +105,8 @@ public class Controller {
                                         getNodeByRowColumnIndex(GridPane.getRowIndex(node) + size, GridPane.getColumnIndex(node), userGrid).setDisable(true);
                                         getNodeByRowColumnIndex(GridPane.getRowIndex(node) + size, GridPane.getColumnIndex(node), userGrid).setId("set"); // anti-plagiat comment: created by Jakub Rogala
                                     }
-
                                     shipsPlaced(element);
-
+                                    notification.setText("Set ship size " + (ships.get(element)));
                                 }
                             }
                         }
@@ -171,8 +168,9 @@ public class Controller {
 
     public void newWindow(ActionEvent event) throws Exception {
         try {
+            //System.out.println("test");
             FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("Seabattle_colors.fxml"));
-            Parent colorroot = (Parent) fxmlloader.load();
+            Parent colorroot = fxmlloader.load();
             Stage colorStage = new Stage();
             colorStage.setTitle("Colors");
             colorStage.setScene(new Scene(colorroot));
@@ -384,8 +382,6 @@ public class Controller {
 
 
     private void shipsPlaced(int element) {
-
-        notification.setText("Set ship size " + (element+1));
 
         if(element >= this.ships.size()-1)
         {

@@ -4,12 +4,13 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="581.0" prefWidth="1131.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SeaBattle.Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="648.0" prefWidth="1131.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SeaBattle.Controller">
    <children>
       <GridPane fx:id="userGrid" blendMode="SRC_ATOP" layoutX="620.0" layoutY="67.0" prefHeight="431.0" prefWidth="422.0">
         <columnConstraints>
@@ -181,22 +182,130 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button fx:id="newGame" layoutX="999.0" layoutY="523.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="105.0" text="New game">
+      <Button fx:id="newGame" layoutX="996.0" layoutY="579.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="105.0" text="New game">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Label fx:id="notification" alignment="CENTER" layoutX="417.0" layoutY="507.0" prefHeight="47.0" prefWidth="284.0" wrapText="true">
+      <Label fx:id="notification" alignment="CENTER" layoutX="417.0" layoutY="563.0" prefHeight="47.0" prefWidth="284.0" wrapText="true">
          <font>
             <Font size="26.0" />
          </font>
       </Label>
       <Label fx:id="enemyLife" layoutX="457.0" layoutY="14.0" prefHeight="35.0" prefWidth="92.0" />
       <Label fx:id="playerLife" layoutX="996.0" layoutY="14.0" prefHeight="35.0" prefWidth="92.0" />
-      <Button fx:id="colors" layoutX="878.0" layoutY="523.0" mnemonicParsing="false" onAction="#newWindow" prefHeight="44.0" prefWidth="105.0" text="Colors">
+      <Button layoutX="881.0" layoutY="579.0" mnemonicParsing="false" onAction="#newWindow" prefHeight="44.0" prefWidth="105.0" text="Colors">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
+      <HBox layoutX="81.0" layoutY="502.0" prefHeight="43.0" prefWidth="422.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="43.0" prefWidth="47.0" text="1" textAlignment="CENTER">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="43.0" prefWidth="47.0" text="2" textAlignment="CENTER">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="43.0" prefWidth="47.0" text="3" textAlignment="CENTER">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="43.0" prefWidth="47.0" text="4" textAlignment="CENTER">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="43.0" prefWidth="47.0" text="5" textAlignment="CENTER">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="43.0" prefWidth="47.0" text="6" textAlignment="CENTER">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="43.0" prefWidth="47.0" text="7" textAlignment="CENTER">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="43.0" prefWidth="47.0" text="8" textAlignment="CENTER">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="43.0" prefWidth="47.0" text="9" textAlignment="CENTER">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="43.0" prefWidth="47.0" text="10" textAlignment="CENTER">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox layoutX="620.0" layoutY="502.0" prefHeight="43.0" prefWidth="422.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="43.0" prefWidth="47.0" text="1" textAlignment="CENTER">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="43.0" prefWidth="47.0" text="2" textAlignment="CENTER">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="43.0" prefWidth="47.0" text="3" textAlignment="CENTER">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="43.0" prefWidth="47.0" text="4" textAlignment="CENTER">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="43.0" prefWidth="47.0" text="5" textAlignment="CENTER">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="43.0" prefWidth="47.0" text="6" textAlignment="CENTER">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="43.0" prefWidth="47.0" text="7" textAlignment="CENTER">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="43.0" prefWidth="47.0" text="8" textAlignment="CENTER">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="43.0" prefWidth="47.0" text="9" textAlignment="CENTER">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="43.0" prefWidth="47.0" text="10" textAlignment="CENTER">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
    </children>
 </Pane>
