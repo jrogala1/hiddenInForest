@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/src/SeaBattle/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SeaBattle/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SeaBattle/Seabattle.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/SeaBattle/Seabattle.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SeaBattle/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SeaBattle/Main.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -88,12 +88,12 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="fxml" value="153" />
-          <entry key="java" value="16506" />
+          <entry key="java" value="16748" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="16506" />
+          <entry key="JAVA" value="16748" />
           <entry key="XML" value="153" />
         </counts>
       </usages-collector>
@@ -107,8 +107,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SeaBattle/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+            <state relative-caret-position="170">
+              <caret line="10" column="13" lean-forward="true" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1211#1212#0" expanded="true" />
@@ -121,8 +121,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SeaBattle/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="166" column="20" selection-start-line="166" selection-start-column="20" selection-end-line="166" selection-end-column="20" />
+            <state relative-caret-position="88">
+              <caret line="166" column="36" selection-start-line="166" selection-start-column="36" selection-end-line="166" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#679#688#0" expanded="true" />
@@ -210,8 +210,8 @@
         <option value="$PROJECT_DIR$/src/SeaBattlee/Main.java" />
         <option value="$PROJECT_DIR$/src/sample/Main.java" />
         <option value="$PROJECT_DIR$/src/SeaBattle/Seabattle.fxml" />
-        <option value="$PROJECT_DIR$/src/SeaBattle/Main.java" />
         <option value="$PROJECT_DIR$/src/SeaBattle/ColorsController.java" />
+        <option value="$PROJECT_DIR$/src/SeaBattle/Main.java" />
         <option value="$PROJECT_DIR$/src/SeaBattle/Controller.java" />
       </list>
     </option>
@@ -274,7 +274,7 @@
     <property name="OverrideImplement.combined" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542411464143" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542411804605" />
     <property name="dynamic.classpath" value="false" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../Desktop/WSZIB-SeaBattle-master" />
@@ -407,7 +407,7 @@
       <workItem from="1542136839330" duration="12220000" />
       <workItem from="1542212205147" duration="23109000" />
       <workItem from="1542299284288" duration="21543000" />
-      <workItem from="1542385615554" duration="25531000" />
+      <workItem from="1542385615554" duration="25871000" />
     </task>
     <servers />
   </component>
@@ -426,13 +426,13 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="84044000" />
+    <option name="totallyTimeSpent" value="84384000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.13219616" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.13219616" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" />
       <window_info id="Designer" order="3" />
@@ -441,7 +441,7 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.329718" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3286334" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3286334" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3991323" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -537,8 +537,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SeaBattle/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        <state relative-caret-position="170">
+          <caret line="10" column="13" lean-forward="true" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1211#1212#0" expanded="true" />
@@ -559,8 +559,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SeaBattle/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="166" column="20" selection-start-line="166" selection-start-column="20" selection-end-line="166" selection-end-column="20" />
+        <state relative-caret-position="88">
+          <caret line="166" column="36" selection-start-line="166" selection-start-column="36" selection-end-line="166" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#679#688#0" expanded="true" />

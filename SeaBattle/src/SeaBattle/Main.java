@@ -14,6 +14,8 @@ public class Main extends Application {
         primaryStage.setTitle("SeaBattle");
         primaryStage.setScene(new Scene(root, 1131, 648));
         primaryStage.show();
+
+
     }
 
 
