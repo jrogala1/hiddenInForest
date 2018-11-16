@@ -194,7 +194,7 @@
       </Label>
       <Label fx:id="enemyLife" layoutX="457.0" layoutY="14.0" prefHeight="35.0" prefWidth="92.0" />
       <Label fx:id="playerLife" layoutX="996.0" layoutY="14.0" prefHeight="35.0" prefWidth="92.0" />
-      <Button layoutX="881.0" layoutY="579.0" mnemonicParsing="false" onAction="#newWindow" prefHeight="44.0" prefWidth="105.0" text="Colors">
+      <Button fx:id="colors" layoutX="881.0" layoutY="579.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="105.0" text="Colors">
          <font>
             <Font size="15.0" />
          </font>

@@ -5,35 +5,40 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="345.0" prefWidth="264.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SeaBattle.Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="345.0" prefWidth="318.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SeaBattle.ColorsController">
    <children>
-      <Label layoutX="90.0" layoutY="33.0" text="Colors">
+      <Label layoutX="117.0" layoutY="35.0" text="Colors">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
-      <Button disable="true" ellipsisString="" layoutX="31.0" layoutY="113.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="36.0" style="-fx-background-color: green;" />
-      <Button disable="true" ellipsisString="" layoutX="31.0" layoutY="161.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="36.0" style="-fx-background-color: blue;" />
-      <Button disable="true" ellipsisString="" layoutX="31.0" layoutY="209.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="36.0" style="-fx-background-color: pink;" />
-      <Label alignment="CENTER" layoutX="83.0" layoutY="113.0" prefHeight="37.0" prefWidth="84.0" text="Your ship">
+      <Button disable="true" ellipsisString="" layoutX="72.0" layoutY="113.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="36.0" style="-fx-background-color: green;" />
+      <Button disable="true" ellipsisString="" layoutX="72.0" layoutY="161.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="36.0" style="-fx-background-color: blue;" />
+      <Button disable="true" ellipsisString="" layoutX="72.0" layoutY="209.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="36.0" style="-fx-background-color: pink;" />
+      <Label alignment="CENTER" layoutX="124.0" layoutY="113.0" prefHeight="37.0" prefWidth="84.0" text="Your ship">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="82.0" layoutY="161.0" prefHeight="37.0" prefWidth="100.0" text="Enemy ship">
+      <Label alignment="CENTER" layoutX="123.0" layoutY="161.0" prefHeight="37.0" prefWidth="100.0" text="Enemy ship">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="85.0" layoutY="210.0" prefHeight="37.0" prefWidth="100.0" text="Missed shot">
+      <Label alignment="CENTER" layoutX="126.0" layoutY="210.0" prefHeight="37.0" prefWidth="100.0" text="Missed shot">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Button layoutX="168.0" layoutY="294.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="66.0" text="Exit">
+      <Button fx:id="closeWindow" layoutX="214.0" layoutY="281.0" mnemonicParsing="false" onAction="#closeButtonAction" prefHeight="29.0" prefWidth="66.0" text="Exit">
          <font>
             <Font size="13.0" />
          </font>
       </Button>
+      <Label layoutX="30.0" layoutY="264.0" prefHeight="62.0" prefWidth="165.0" text="Hint: Place ships on your board but Always shoot on your enemy board" wrapText="true">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

@@ -51,12 +51,14 @@ public class Controller {
     private Label enemyLife;
     @FXML
     private Label playerLife;
+    @FXML
+    private Button colors;
 
 
     public void initialize() {
 
         getShipsList();
-
+        ColorsController cc = new ColorsController();
         lifeOnBeginning = life;
 
         initGrid(userGrid);
@@ -106,6 +108,7 @@ public class Controller {
                                         getNodeByRowColumnIndex(GridPane.getRowIndex(node) + size, GridPane.getColumnIndex(node), userGrid).setId("set"); // anti-plagiat comment: created by Jakub Rogala
                                     }
                                     shipsPlaced(element);
+                                    if (ships.get(element) != enemyShips)
                                     notification.setText("Set ship size " + (ships.get(element)));
                                 }
                             }
@@ -164,22 +167,22 @@ public class Controller {
                 }
             }
         });
-    }
 
-    public void newWindow(ActionEvent event) throws Exception {
-        try {
-            //System.out.println("test");
-            FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("Seabattle_colors.fxml"));
-            Parent colorroot = fxmlloader.load();
-            Stage colorStage = new Stage();
-            colorStage.setTitle("Colors");
-            colorStage.setScene(new Scene(colorroot));
-            colorStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        colors.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                MouseButton button = event.getButton();
+                if(button == MouseButton.PRIMARY)
+                {
+                    try {
+                        cc.newWindow();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
     }
-
 
     private void getLifeStatus() {
 
