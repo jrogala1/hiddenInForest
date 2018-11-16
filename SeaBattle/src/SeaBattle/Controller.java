@@ -11,55 +11,48 @@ import javafx.scene.layout.GridPane;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Controller {
 
     public static int mapX = 9;
     public static int mapY = 9;
     //public Array[] ships = new Array[5] (5,3,2,1,1);
-    //public int[] ships = {1,1,2,3,4};
+    public int[] shipSize = {1,1,2,3,4};
+    private int[] enemyShipSize = {4};//{1,1,2,3,4};
     public int element = 0;
     List<Integer> ships = new ArrayList<Integer>();
     private boolean save = true;
     private boolean isVertical = true;
-    private int table[];
+    private int startgame = 0;
+    private int enemyShips = 1;
+    private Random random = new Random();
+
 
     @FXML
     private GridPane userGrid;
     @FXML
     private GridPane aiGrid;
-    @FXML
-    private Button[][] buttonArray = new Button[10][10];
 
     public void initialize() {
+
         getShipsList();
-        for (int x = 0; x < 10; x++) {
-            for (int y = 0; y < 10; y++) {
-                Button button = new Button(x + " " + y);
-
-                GridPane.setRowIndex(button, x);
-                GridPane.setColumnIndex(button, y);
-
-                userGrid.getChildren().add(button);
-
-                //createMouseEvents(button);
-
-            }
-        }
+        initGrid(userGrid);
+        initGrid(aiGrid);
 
         userGrid.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 MouseButton button = event.getButton();
-                if (isVertical == true && button == MouseButton.PRIMARY) {
+                if (isVertical == true && button == MouseButton.PRIMARY && startgame == 0) {
                         for (Node node : userGrid.getChildren()) {
                             if (node instanceof Button) {
                                 if (node.getBoundsInParent().contains(event.getX(), event.getY())) {
                                     System.out.println("Node: " + node + " at " + GridPane.getRowIndex(node) + "/" + GridPane.getColumnIndex(node));
-                                    if (isPlaced(node) == false && canPlace(node, ships.get(element), isVertical) == true) {
-                                        if ((GridPane.getRowIndex(node) + ships.get(element)) > mapY) {
-                                            save = false;
-                                        } else {
+                                    if (isPlaced(node) == false && canPlace(node, ships.get(element), isVertical, userGrid) == true) {
+                                        //if ((GridPane.getRowIndex(node) + ships.get(element)) > mapY) {
+                                        //    save = false;
+                                        //} else {
                                             node.setId("set");
                                             node.setStyle("-fx-background-color: green");
                                             node.setDisable(true);
@@ -70,21 +63,21 @@ public class Controller {
                                             }
                                             //save = true;
                                             shipsPlaced(element);
-                                        }
+                                        //}
                                     }
                                 }
                             }
                         }
                 }
-                else if (isVertical == false && button == MouseButton.PRIMARY) {
+                else if (isVertical == false && button == MouseButton.PRIMARY && startgame == 0) {
                         for (Node node : userGrid.getChildren()) {
                             if (node instanceof Button) {
                                 if (node.getBoundsInParent().contains(event.getX(), event.getY())) {
                                     System.out.println("Node: " + node + " at " + GridPane.getRowIndex(node) + "/" + GridPane.getColumnIndex(node));
-                                    if (isPlaced(node) == false && canPlace(node, ships.get(element), isVertical) == true) {
-                                        if ((GridPane.getColumnIndex(node) + ships.get(element)) > mapY) {
-                                            save = false;
-                                        } else {
+                                    if (isPlaced(node) == false && canPlace(node, ships.get(element), isVertical, userGrid) == true) {
+                                       // if ((GridPane.getColumnIndex(node) + ships.get(element)) > mapY) {
+                                            //save = false;
+                                        //} else {
                                             node.setId("set");
                                             node.setStyle("-fx-background-color: green");
                                             node.setDisable(true);
@@ -95,11 +88,15 @@ public class Controller {
                                             }
                                             // save = true;
                                             shipsPlaced(element);
-                                        }
+                                        //}
                                     }
                                 }
                             }
                         }
+                    }
+                    else if(startgame == 1)
+                    {
+
                     }
                 }
         });
@@ -117,6 +114,43 @@ public class Controller {
         });
 
 
+    }
+
+    private void initGrid(GridPane grid) {
+        for (int x = 0; x < 10; x++) {
+            for (int y = 0; y < 10; y++) {
+                Button button = new Button(x + " " + y);
+
+                GridPane.setRowIndex(button, x);
+                GridPane.setColumnIndex(button, y);
+
+                grid.getChildren().add(button);
+
+            }
+        }
+    }
+
+    private void initEnemyBoard(int enemyShips) {
+
+
+            while (enemyShips > 0) {
+                for( int ship : enemyShipSize ) {
+                    int x = random.nextInt(10);
+                    int y = random.nextInt(10);
+                    for( int i = 0; i < ship; i++) {
+                        if(canPlace(getNodeByRowColumnIndex(x,y,aiGrid),ship,isVertical,aiGrid)) {
+                                getNodeByRowColumnIndex(x, y + i, aiGrid).setId("set");
+                                getNodeByRowColumnIndex(x, y + i, aiGrid).setStyle("-fx-background-color: blue");
+                        }  else {
+                            x = random.nextInt(10);
+                            y = random.nextInt(10);
+                            i--;
+                        }
+                    }
+                    System.out.println("inicjujeenemy, enemyships = " + enemyShips);
+                    enemyShips--;
+                }
+             }
     }
 
     public void createMouseEvents(Button node) {
@@ -202,60 +236,40 @@ public class Controller {
         if(element >= this.ships.size()-1)
         {
             System.out.println("all ships placed");
+            for (Node node : userGrid.getChildren())
+            {
+                node.setDisable(true);
+            }
+            initEnemyBoard(enemyShips);
+            startgame = 1;
         }
         this.element++;
     }
 
 
     private void getShipsList() {
-        this.ships.add(1);
-        this.ships.add(2);
-        this.ships.add(3);
-        //this.ships.add(4);
+        for( int size : shipSize )
+            this.ships.add(size);
     }
 
 
-    public boolean canPlace(Node node, int shipsize, boolean isVertical)
+    public boolean canPlace(Node node, int shipsize, boolean isVertical, GridPane grid)
         {
             Node lastShipField;
             Node previousField;
             Node[] ship = new Node[shipsize];
 
+            System.out.println("dlugosc statku shipsize = " + shipsize);
+
             if(isVertical) {
 
-                ship = getShipPositions(node,shipsize, userGrid, isVertical);
+                ship = getShipPositions(node,shipsize, grid, isVertical);
 
                 //if(checkBorder(ship,userGrid,isVertical,shipsize)) return true;
-                if(checkShipPosition(ship,userGrid,isVertical,shipsize)) return true;
+                if(checkShipPosition(ship, grid, isVertical, shipsize)){
+                    System.out.println("można stawiać"); return true;}
                 else return false;
-                /*if ((GridPane.getColumnIndex(node) + shipsize) > 10) return false;
-                else
-                    lastShipField = getNodeByRowColumnIndex(GridPane.getRowIndex(node), GridPane.getColumnIndex(node) + shipsize, userGrid);
 
-                if ((GridPane.getColumnIndex(node) - 1) <= 0) {
-                    previousField = getNodeByRowColumnIndex(GridPane.getRowIndex(node), GridPane.getColumnIndex(node), userGrid);
-                } else {
-                    previousField = getNodeByRowColumnIndex(GridPane.getRowIndex(node), GridPane.getColumnIndex(node) - 1, userGrid);
-                }
-
-                for (int i = 1; i <= shipsize; i++)
-                {
-                    if(getNodeByRowColumnIndex(GridPane.getRowIndex(node)+i, GridPane.getColumnIndex(node), userGrid).getId() == "set") return false;
-                    if(getNodeByRowColumnIndex(GridPane.getRowIndex(node)-i, GridPane.getColumnIndex(node), userGrid).getId() == "set") return false;
-                }
-
-
-                if (lastShipField.getId() != "set") {
-
-                    if (GridPane.getColumnIndex(node) >= 0) {
-
-                        if (previousField.getId() != "set") {
-                            return true;
-                        } else return false;
-                    }
-                    return false;
-
-                } else return false;*/
             } else
             {
                 return true;
@@ -263,7 +277,7 @@ public class Controller {
 
         }
 
-    private boolean checkBorder(Node[] ship, GridPane userGrid, boolean isVertical, int shipsize)
+    private boolean checkBorder(Node[] ship, GridPane grid, boolean isVertical, int shipsize)
     {
         if(isVertical)
         {
@@ -279,31 +293,80 @@ public class Controller {
         return true;
     }
 
-    private boolean checkShipPosition(Node[] ship, GridPane userGrid, boolean isVertical, int shipsize) {
+    private boolean checkShipPosition(Node[] ship, GridPane grid, boolean isVertical, int shipsize) {
+
+        int lastShipElement = shipsize - 1;
+        Node firstShipElement = ship[0];
 
         if(isVertical)
         {
-            if((GridPane.getColumnIndex(ship[0])-1) >= 0 ) {
+
+            if(GridPane.getColumnIndex(firstShipElement) + lastShipElement <= 9)
+            {
+                System.out.println("zawiera sie w przedziale");
+                if(GridPane.getColumnIndex(ship[lastShipElement]) != 9) {
+                    System.out.println("test");
+                    for(Node node : ship)
+                        if (getNodeByRowColumnIndex(GridPane.getRowIndex(ship[lastShipElement]), GridPane.getColumnIndex(node) + 1, grid).getId() == "set")
+                            return false;
+
+                    if(GridPane.getColumnIndex(firstShipElement) != 0)
+                            if (getNodeByRowColumnIndex(GridPane.getRowIndex(ship[lastShipElement]), GridPane.getColumnIndex(firstShipElement) - 1, grid).getId() == "set")
+                                return false;
+                } else
+                {
+                    if (getNodeByRowColumnIndex(GridPane.getRowIndex(ship[lastShipElement]), GridPane.getColumnIndex(ship[lastShipElement]), grid).getId() == "set")
+                    { System.out.println("wchodze"); return false;}
+                }
+
+            } else {System.out.println("nie zawiera sie w przedziale"); return false;}
+
+
+
+           /* if((GridPane.getColumnIndex(ship[0])-1) >= 0 ) {
                 if (getNodeByRowColumnIndex(GridPane.getRowIndex(ship[0]), GridPane.getColumnIndex(ship[0]) - 1, userGrid).getId() == "set")
                     return false;
-            }
+            } //else if((GridPane.getColumnIndex(ship[0])-1) < 0 ) {
+                for ( Node node : ship )
+                {
+                    if(GridPane.getRowIndex(node) > 0 && GridPane.getColumnIndex(ship[shipsize-1])+1 < 10) {
+                        if(GridPane.getColumnIndex(ship[shipsize-1]) > 9)
+                            return false;
+                        if (getNodeByRowColumnIndex(GridPane.getRowIndex(node)+1, GridPane.getColumnIndex(node), userGrid).getId() == "set")
+                            return false;
+                        if (getNodeByRowColumnIndex(GridPane.getRowIndex(node)-1, GridPane.getColumnIndex(node), userGrid).getId() == "set")
+                            return false;
+                        if (getNodeByRowColumnIndex(GridPane.getRowIndex(node), GridPane.getColumnIndex(node)+1, userGrid).getId() == "set")
+                            return false;
+                    }
+
+                    if(GridPane.getRowIndex(node) == 9) {
+                        if (getNodeByRowColumnIndex(GridPane.getRowIndex(node) - 1, GridPane.getColumnIndex(node), userGrid).getId() == "set")
+                            return false;
+                    }
+
+                }
+          //  }
 
             if (getNodeByRowColumnIndex(GridPane.getRowIndex(ship[0]), GridPane.getColumnIndex(ship[0]), userGrid).getId() == "set")
             {
-                return true;
+                return false;
             }
 
-            if((GridPane.getRowIndex(ship[shipsize-1])+1) < 10) {
-                if (getNodeByRowColumnIndex(GridPane.getRowIndex(ship[shipsize - 1]), GridPane.getColumnIndex(ship[shipsize - 1]) + 1, userGrid).getId() == "set")
-                    return false;
-            }
-
+            // sprawdzam czy ostatni element statku jest zaznaczony
             if (getNodeByRowColumnIndex(GridPane.getRowIndex(ship[shipsize - 1]), GridPane.getColumnIndex(ship[shipsize - 1]), userGrid).getId() == "set")
             {
-                return true;
+                return false;
             }
 
-            for ( Node node : ship )
+            if((GridPane.getColumnIndex(ship[shipsize-1])+1) < 10) { // sprawdzam czy ostatni element statku + 1 jest zaznaczony
+                if (getNodeByRowColumnIndex(GridPane.getRowIndex(ship[shipsize - 1]), GridPane.getColumnIndex(ship[shipsize - 1]) + 1, userGrid).getId() == "set")
+                    return false;
+            } else if (getNodeByRowColumnIndex(GridPane.getRowIndex(ship[shipsize - 1]), GridPane.getColumnIndex(ship[shipsize - 1]), userGrid).getId() == "set")
+                return false;
+
+
+           /* for ( Node node : ship )
             {
                 if(GridPane.getRowIndex(node) == 0) {
                     if (getNodeByRowColumnIndex(GridPane.getRowIndex(node), GridPane.getColumnIndex(node), userGrid).getId() == "set")
@@ -314,7 +377,7 @@ public class Controller {
                     if (getNodeByRowColumnIndex(GridPane.getRowIndex(node) - 1, GridPane.getColumnIndex(node), userGrid).getId() == "set")
                         return false;
                 }
-            }
+            }*/
         }
         else
         {
