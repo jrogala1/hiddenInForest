@@ -87,6 +87,7 @@ public class Controller {
                                     }
 
                                     shipsPlaced(element);
+                                    if (element > enemyShips)
                                     notification.setText("Set ship size " + (ships.get(element)));
                                 }
                             }
@@ -108,7 +109,7 @@ public class Controller {
                                         getNodeByRowColumnIndex(GridPane.getRowIndex(node) + size, GridPane.getColumnIndex(node), userGrid).setId("set"); // anti-plagiat comment: created by Jakub Rogala
                                     }
                                     shipsPlaced(element);
-                                    if (ships.get(element) != enemyShips)
+                                    if (element > enemyShips)
                                     notification.setText("Set ship size " + (ships.get(element)));
                                 }
                             }
@@ -163,7 +164,7 @@ public class Controller {
             public void handle(MouseEvent event) {
                 MouseButton button = event.getButton();
                 if (button == MouseButton.PRIMARY) {
-                    //tobeadded
+
                 }
             }
         });
