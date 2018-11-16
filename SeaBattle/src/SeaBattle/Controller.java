@@ -19,13 +19,13 @@ public class Controller {
     public static int mapY = 9;
     //public Array[] ships = new Array[5] (5,3,2,1,1);
     public int[] shipSize = {1,1,2,3,4};
-    private int[] enemyShipSize = {4};//{1,1,2,3,4};
+    private int[] enemyShipSize = {1,1,2,3,4};
     public int element = 0;
     List<Integer> ships = new ArrayList<Integer>();
     private boolean save = true;
     private boolean isVertical = true;
-    private int startgame = 0;
-    private int enemyShips = 1;
+    private int gamestatus = 0;
+    private int enemyShips = 5;
     private Random random = new Random();
 
 
@@ -44,7 +44,7 @@ public class Controller {
             @Override
             public void handle(MouseEvent event) {
                 MouseButton button = event.getButton();
-                if (isVertical == true && button == MouseButton.PRIMARY && startgame == 0) {
+                if (isVertical == true && button == MouseButton.PRIMARY && gamestatus == 0) {
                         for (Node node : userGrid.getChildren()) {
                             if (node instanceof Button) {
                                 if (node.getBoundsInParent().contains(event.getX(), event.getY())) {
@@ -69,7 +69,7 @@ public class Controller {
                             }
                         }
                 }
-                else if (isVertical == false && button == MouseButton.PRIMARY && startgame == 0) {
+                else if (isVertical == false && button == MouseButton.PRIMARY && gamestatus == 0) {
                         for (Node node : userGrid.getChildren()) {
                             if (node instanceof Button) {
                                 if (node.getBoundsInParent().contains(event.getX(), event.getY())) {
@@ -84,7 +84,7 @@ public class Controller {
                                             for (int size = 1; size <= ships.get(element) - 1; size++) {
                                                 getNodeByRowColumnIndex(GridPane.getRowIndex(node) + size, GridPane.getColumnIndex(node), userGrid).setStyle("-fx-background-color: green");
                                                 getNodeByRowColumnIndex(GridPane.getRowIndex(node) + size, GridPane.getColumnIndex(node), userGrid).setDisable(true);
-                                                getNodeByRowColumnIndex(GridPane.getRowIndex(node) + size, GridPane.getColumnIndex(node), userGrid).setId("set");
+                                                getNodeByRowColumnIndex(GridPane.getRowIndex(node) + size, GridPane.getColumnIndex(node), userGrid).setId("set"); // anti-plagiat comment: created by Jakub Rogala
                                             }
                                             // save = true;
                                             shipsPlaced(element);
@@ -94,7 +94,7 @@ public class Controller {
                             }
                         }
                     }
-                    else if(startgame == 1)
+                    else if(gamestatus == 1)
                     {
 
                     }
@@ -124,6 +124,9 @@ public class Controller {
                 GridPane.setRowIndex(button, x);
                 GridPane.setColumnIndex(button, y);
 
+                button.setStyle("-fx-border-color: black");
+                button.setMinSize(44.0,44.5);
+
                 grid.getChildren().add(button);
 
             }
@@ -132,19 +135,26 @@ public class Controller {
 
     private void initEnemyBoard(int enemyShips) {
 
-
+        boolean next = false;
+        int x,y;
+// anti-plagiat: created by Jakub Rogala
             while (enemyShips > 0) {
                 for( int ship : enemyShipSize ) {
-                    int x = random.nextInt(10);
-                    int y = random.nextInt(10);
-                    for( int i = 0; i < ship; i++) {
+                    next = false;
+                    x = random.nextInt(10);
+                    y = random.nextInt(10);
+                    while (!next) {
                         if(canPlace(getNodeByRowColumnIndex(x,y,aiGrid),ship,isVertical,aiGrid)) {
-                                getNodeByRowColumnIndex(x, y + i, aiGrid).setId("set");
-                                getNodeByRowColumnIndex(x, y + i, aiGrid).setStyle("-fx-background-color: blue");
+                            System.out.println("wykonuje dla x = " + x + " oraz y = " + y);
+                            for( int z = 0; z < ship; z++) {
+                                getNodeByRowColumnIndex(x, y + z, aiGrid).setId("set");
+                                getNodeByRowColumnIndex(x, y + z, aiGrid).setStyle("-fx-background-color: blue");
+                            }
+                            next = true;
                         }  else {
                             x = random.nextInt(10);
                             y = random.nextInt(10);
-                            i--;
+                            next = false;
                         }
                     }
                     System.out.println("inicjujeenemy, enemyships = " + enemyShips);
@@ -241,11 +251,11 @@ public class Controller {
                 node.setDisable(true);
             }
             initEnemyBoard(enemyShips);
-            startgame = 1;
+            gamestatus = 1;
         }
         this.element++;
     }
-
+// anti-plagiat: created by Jakub Rogala
 
     private void getShipsList() {
         for( int size : shipSize )
