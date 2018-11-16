@@ -181,7 +181,19 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button layoutX="999.0" layoutY="523.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="105.0" text="New game">
+      <Button fx:id="newGame" layoutX="999.0" layoutY="523.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="105.0" text="New game">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Label fx:id="notification" alignment="CENTER" layoutX="417.0" layoutY="507.0" prefHeight="47.0" prefWidth="284.0" wrapText="true">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+      <Label fx:id="enemyLife" layoutX="457.0" layoutY="14.0" prefHeight="35.0" prefWidth="92.0" />
+      <Label fx:id="playerLife" layoutX="996.0" layoutY="14.0" prefHeight="35.0" prefWidth="92.0" />
+      <Button fx:id="colors" layoutX="878.0" layoutY="523.0" mnemonicParsing="false" onAction="#newWindow" prefHeight="44.0" prefWidth="105.0" text="Colors">
          <font>
             <Font size="15.0" />
          </font>

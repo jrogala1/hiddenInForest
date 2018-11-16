@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="345.0" prefWidth="264.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SeaBattle.Controller">
+   <children>
+      <Label layoutX="90.0" layoutY="33.0" text="Colors">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Button disable="true" ellipsisString="" layoutX="31.0" layoutY="113.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="36.0" style="-fx-background-color: green;" />
+      <Button disable="true" ellipsisString="" layoutX="31.0" layoutY="161.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="36.0" style="-fx-background-color: blue;" />
+      <Button disable="true" ellipsisString="" layoutX="31.0" layoutY="209.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="36.0" style="-fx-background-color: pink;" />
+      <Label alignment="CENTER" layoutX="83.0" layoutY="113.0" prefHeight="37.0" prefWidth="84.0" text="Your ship">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="82.0" layoutY="161.0" prefHeight="37.0" prefWidth="100.0" text="Enemy ship">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="85.0" layoutY="210.0" prefHeight="37.0" prefWidth="100.0" text="Missed shot">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button layoutX="168.0" layoutY="294.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="66.0" text="Exit">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>

@@ -1,23 +1,27 @@
 package SeaBattle;
 
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class Controller {
 
-    public static int mapX = 9;
-    public static int mapY = 9;
-    //public Array[] ships = new Array[5] (5,3,2,1,1);
     public int[] shipSize = {1,1,2,3,4};
     private int[] enemyShipSize = {1,1,2,3,4};
     public int element = 0;
@@ -27,99 +31,233 @@ public class Controller {
     private int gamestatus = 0;
     private int enemyShips = 5;
     private Random random = new Random();
+    private int lifeOnBeginning;
+    private int life;
+    private int humanLife;
+    private Node randomHumanField;
+    private boolean cellDisabled = false;
+
 
 
     @FXML
     private GridPane userGrid;
     @FXML
     private GridPane aiGrid;
+    @FXML
+    private Button newGame;
+    @FXML
+    private Button colors;
+    @FXML
+    private Label notification;
+    @FXML
+    private Label enemyLife;
+    @FXML
+    private Label playerLife;
+
 
     public void initialize() {
 
         getShipsList();
+
+        lifeOnBeginning = life;
+
         initGrid(userGrid);
         initGrid(aiGrid);
+
+        notification.setText("Set ship size " + shipSize[0]);
 
         userGrid.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 MouseButton button = event.getButton();
                 if (isVertical == true && button == MouseButton.PRIMARY && gamestatus == 0) {
-                        for (Node node : userGrid.getChildren()) {
-                            if (node instanceof Button) {
-                                if (node.getBoundsInParent().contains(event.getX(), event.getY())) {
-                                    System.out.println("Node: " + node + " at " + GridPane.getRowIndex(node) + "/" + GridPane.getColumnIndex(node));
-                                    if (isPlaced(node) == false && canPlace(node, ships.get(element), isVertical, userGrid) == true) {
-                                        //if ((GridPane.getRowIndex(node) + ships.get(element)) > mapY) {
-                                        //    save = false;
-                                        //} else {
-                                            node.setId("set");
-                                            node.setStyle("-fx-background-color: green");
-                                            node.setDisable(true);
-                                            for (int size = 1; size <= ships.get(element) - 1; size++) {
-                                                getNodeByRowColumnIndex(GridPane.getRowIndex(node), GridPane.getColumnIndex(node) + size, userGrid).setStyle("-fx-background-color: green");
-                                                getNodeByRowColumnIndex(GridPane.getRowIndex(node), GridPane.getColumnIndex(node) + size, userGrid).setDisable(true);
-                                                getNodeByRowColumnIndex(GridPane.getRowIndex(node), GridPane.getColumnIndex(node) + size, userGrid).setId("set");
-                                            }
-                                            //save = true;
-                                            shipsPlaced(element);
-                                        //}
+                    for (Node node : userGrid.getChildren()) {
+                        if (node instanceof Button) {
+                            if (node.getBoundsInParent().contains(event.getX(), event.getY())) {
+                                //System.out.println("Node: " + node + " at " + GridPane.getRowIndex(node) + "/" + GridPane.getColumnIndex(node));
+                                if (isPlaced(node) == false && canPlace(node, ships.get(element), isVertical, userGrid) == true) {
+
+                                    node.setId("set");
+                                    node.setStyle("-fx-background-color: green");
+                                    node.setDisable(true);
+                                    for (int size = 1; size <= ships.get(element) - 1; size++) {
+                                        getNodeByRowColumnIndex(GridPane.getRowIndex(node), GridPane.getColumnIndex(node) + size, userGrid).setStyle("-fx-background-color: green");
+                                        getNodeByRowColumnIndex(GridPane.getRowIndex(node), GridPane.getColumnIndex(node) + size, userGrid).setDisable(true);
+                                        getNodeByRowColumnIndex(GridPane.getRowIndex(node), GridPane.getColumnIndex(node) + size, userGrid).setId("set");
                                     }
-                                }
-                            }
-                        }
-                }
-                else if (isVertical == false && button == MouseButton.PRIMARY && gamestatus == 0) {
-                        for (Node node : userGrid.getChildren()) {
-                            if (node instanceof Button) {
-                                if (node.getBoundsInParent().contains(event.getX(), event.getY())) {
-                                    System.out.println("Node: " + node + " at " + GridPane.getRowIndex(node) + "/" + GridPane.getColumnIndex(node));
-                                    if (isPlaced(node) == false && canPlace(node, ships.get(element), isVertical, userGrid) == true) {
-                                       // if ((GridPane.getColumnIndex(node) + ships.get(element)) > mapY) {
-                                            //save = false;
-                                        //} else {
-                                            node.setId("set");
-                                            node.setStyle("-fx-background-color: green");
-                                            node.setDisable(true);
-                                            for (int size = 1; size <= ships.get(element) - 1; size++) {
-                                                getNodeByRowColumnIndex(GridPane.getRowIndex(node) + size, GridPane.getColumnIndex(node), userGrid).setStyle("-fx-background-color: green");
-                                                getNodeByRowColumnIndex(GridPane.getRowIndex(node) + size, GridPane.getColumnIndex(node), userGrid).setDisable(true);
-                                                getNodeByRowColumnIndex(GridPane.getRowIndex(node) + size, GridPane.getColumnIndex(node), userGrid).setId("set"); // anti-plagiat comment: created by Jakub Rogala
-                                            }
-                                            // save = true;
-                                            shipsPlaced(element);
-                                        //}
-                                    }
+
+                                    shipsPlaced(element);
+
                                 }
                             }
                         }
                     }
-                    else if(gamestatus == 1)
-                    {
+                } else if (isVertical == false && button == MouseButton.PRIMARY && gamestatus == 0) {
+                    for (Node node : userGrid.getChildren()) {
+                        if (node instanceof Button) {
+                            if (node.getBoundsInParent().contains(event.getX(), event.getY())) {
+                                //System.out.println("Node: " + node + " at " + GridPane.getRowIndex(node) + "/" + GridPane.getColumnIndex(node));
+                                if (isPlaced(node) == false && canPlace(node, ships.get(element), isVertical, userGrid) == true) {
 
+                                    node.setId("set");
+                                    node.setStyle("-fx-background-color: green");
+                                    node.setDisable(true);
+                                    for (int size = 1; size <= ships.get(element) - 1; size++) {
+                                        getNodeByRowColumnIndex(GridPane.getRowIndex(node) + size, GridPane.getColumnIndex(node), userGrid).setStyle("-fx-background-color: green");
+                                        getNodeByRowColumnIndex(GridPane.getRowIndex(node) + size, GridPane.getColumnIndex(node), userGrid).setDisable(true);
+                                        getNodeByRowColumnIndex(GridPane.getRowIndex(node) + size, GridPane.getColumnIndex(node), userGrid).setId("set"); // anti-plagiat comment: created by Jakub Rogala
+                                    }
+
+                                    shipsPlaced(element);
+
+                                }
+                            }
+                        }
                     }
                 }
-        });
-
-        userGrid.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                MouseButton button = event.getButton();
-                if (button == MouseButton.SECONDARY) {
-                    System.out.println("button clicked");
-                    isVertical = !isVertical;
-                }
-
             }
         });
 
+
+        aiGrid.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                MouseButton button = event.getButton();
+                if (gamestatus == 2 && button == MouseButton.PRIMARY) {
+                    for (Node node : aiGrid.getChildren()) {
+                        if (node instanceof Button) {
+                            if (node.getBoundsInParent().contains(event.getX(), event.getY())) {
+                                //System.out.println("Node: " + node + " at " + GridPane.getRowIndex(node) + "/" + GridPane.getColumnIndex(node) + " ID: " + node.getId());
+
+                                checkifShooted(node, aiGrid, true);
+                                if (!cellDisabled)
+                                    checkifShooted(randomHumanField, userGrid, false);
+                                cellDisabled = false;
+
+                                System.out.println("enemy: " + life + "     player: " + humanLife);
+                                getLifeStatus();
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+
+        if (gamestatus != 2) {
+            userGrid.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    MouseButton button = event.getButton();
+                    if (button == MouseButton.SECONDARY) {
+                        System.out.println("button clicked");
+                        isVertical = !isVertical;
+                    }
+
+                }
+            });
+        }
+
+        newGame.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                MouseButton button = event.getButton();
+                if (button == MouseButton.PRIMARY) {
+                    //tobeadded
+                }
+            }
+        });
+    }
+
+    public void newWindow(ActionEvent event) throws Exception {
+        try {
+            FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("Seabattle_colors.fxml"));
+            Parent colorroot = (Parent) fxmlloader.load();
+            Stage colorStage = new Stage();
+            colorStage.setTitle("Colors");
+            colorStage.setScene(new Scene(colorroot));
+            colorStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    private void getLifeStatus() {
+
+        int enemy = (life * 100)/lifeOnBeginning;
+        int player = (humanLife * 100)/lifeOnBeginning;
+        enemyLife.setText("Enemy life: " + enemy + "%");
+        playerLife.setText("Player life: " + player + "%");
+        if(enemy == 0)
+        {
+            notification.setText("YOU WIN!!!!!");
+            blockGrids();
+        }
+        else if (player == 0)
+        {
+            notification.setText("YOU LOSE :(");
+            blockGrids();
+        }
+    }
+
+    private void blockGrids() {
+        userGrid.setDisable(true);
+        aiGrid.setDisable(true);
+    }
+
+    private void checkifShooted(Node node, GridPane grid, boolean isHuman) {
+
+        if(isHuman) {
+
+            if (!node.isDisabled()) {
+                if (node.getId() == "set") {
+                    System.out.println("shooted!");
+                    node.setStyle("-fx-background-color: blue");
+                    node.setDisable(true);
+                    grid.setId("shooted");
+                    cellDisabled = true;
+                    life--;
+                } else
+                {
+                    node.setStyle("-fx-background-color: pink");
+                    node.setDisable(true);
+                }
+            } else {
+                cellDisabled = true;
+            }
+        } else
+        {
+            boolean enemyTurn = true;
+            while(enemyTurn) {
+                randomHumanField = getNodeByRowColumnIndex(random.nextInt(10), random.nextInt(10), userGrid);
+                while (randomHumanField.getId() == "shooted") {
+                    System.out.println("Cannot shot, field disabled, checking for new one....");
+                    randomHumanField = getNodeByRowColumnIndex(random.nextInt(10), random.nextInt(10), userGrid);
+                }
+                if (randomHumanField.getId() == "set") {
+                    System.out.println("Enemy shooted!");
+                    randomHumanField.setId("shooted");
+                    randomHumanField.setStyle("-fx-background-color: blue");
+                    randomHumanField.setDisable(true);
+                    humanLife--;
+                    enemyTurn = true;
+                } else {
+                    randomHumanField.setId("shooted");
+                    randomHumanField.setStyle("-fx-background-color: pink");
+                    randomHumanField.setDisable(true);
+                    enemyTurn = false;
+                }
+            }
+
+        }
 
     }
 
     private void initGrid(GridPane grid) {
         for (int x = 0; x < 10; x++) {
             for (int y = 0; y < 10; y++) {
-                Button button = new Button(x + " " + y);
+                Button button = new Button();
 
                 GridPane.setRowIndex(button, x);
                 GridPane.setColumnIndex(button, y);
@@ -144,11 +282,11 @@ public class Controller {
                     x = random.nextInt(10);
                     y = random.nextInt(10);
                     while (!next) {
-                        if(canPlace(getNodeByRowColumnIndex(x,y,aiGrid),ship,isVertical,aiGrid)) {
+                        if(canPlace(getNodeByRowColumnIndex(x,y,aiGrid),ship,true,aiGrid)) {
                             System.out.println("wykonuje dla x = " + x + " oraz y = " + y);
                             for( int z = 0; z < ship; z++) {
                                 getNodeByRowColumnIndex(x, y + z, aiGrid).setId("set");
-                                getNodeByRowColumnIndex(x, y + z, aiGrid).setStyle("-fx-background-color: blue");
+                                //getNodeByRowColumnIndex(x, y + z, aiGrid).setStyle("-fx-background-color: blue");
                             }
                             next = true;
                         }  else {
@@ -161,9 +299,13 @@ public class Controller {
                     enemyShips--;
                 }
              }
+        notification.setText("Fire your enemy!");
+             gamestatus = 2;
     }
 
-    public void createMouseEvents(Button node) {
+    //////////////// HIGHLIGHT FIELDS WHEN YOU CAN PLACE SHIP - to be changed
+
+/*    public void createMouseEvents(Button node) {
 
            EventHandler<MouseEvent> mouseentered = new EventHandler<MouseEvent>() {
                 @Override
@@ -238,10 +380,12 @@ public class Controller {
             node.addEventFilter(MouseEvent.MOUSE_ENTERED, mouseentered);
             node.addEventFilter(MouseEvent.MOUSE_EXITED, mouseexited);
 
-        }
+        }*/
 
 
     private void shipsPlaced(int element) {
+
+        notification.setText("Set ship size " + (element+1));
 
         if(element >= this.ships.size()-1)
         {
@@ -250,16 +394,19 @@ public class Controller {
             {
                 node.setDisable(true);
             }
-            initEnemyBoard(enemyShips);
             gamestatus = 1;
+            initEnemyBoard(enemyShips);
         }
         this.element++;
     }
 // anti-plagiat: created by Jakub Rogala
 
     private void getShipsList() {
-        for( int size : shipSize )
+        for( int size : shipSize ) {
             this.ships.add(size);
+            life += size;
+            humanLife += size;
+        }
     }
 
 
@@ -286,22 +433,6 @@ public class Controller {
             }
 
         }
-
-    private boolean checkBorder(Node[] ship, GridPane grid, boolean isVertical, int shipsize)
-    {
-        if(isVertical)
-        {
-            for( Node node : ship)
-            {
-
-            }
-        }
-        else
-        {
-            return true;
-        }
-        return true;
-    }
 
     private boolean checkShipPosition(Node[] ship, GridPane grid, boolean isVertical, int shipsize) {
 
