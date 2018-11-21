@@ -6,12 +6,8 @@
       <change beforePath="$PROJECT_DIR$/../SeaBattle/out/production/SeaBattle/SeaBattle/Controller$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/../SeaBattle/out/production/SeaBattle/SeaBattle/Controller$4.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SeaBattle/out/production/SeaBattle/SeaBattle/Controller$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/../SeaBattle/out/production/SeaBattle/SeaBattle/Controller$5.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SeaBattle/out/production/SeaBattle/SeaBattle/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/../SeaBattle/out/production/SeaBattle/SeaBattle/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dojoBank/com/company/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dojoBank/com/company/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dojoBank/com/company/bank_ocr_dojo_us1" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dojoBank/com/company/bank_ocr_dojo_us1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/dojoBank/com/company/fileChecker.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/dojoBank/com/company/fileChecker.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/bank_ocr_dojo_us1" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/bank_ocr_dojo_us1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/dojoBank/com/company/fileChecker.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/digits" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/digits" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/fileChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/fileChecker.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -33,12 +29,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="2629" />
+          <entry key="java" value="3066" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="2629" />
+          <entry key="JAVA" value="3066" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -70,8 +66,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/fileChecker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="108" column="33" lean-forward="true" selection-start-line="108" selection-start-column="33" selection-end-line="108" selection-end-column="33" />
+            <state relative-caret-position="536">
+              <caret line="181" column="9" lean-forward="true" selection-start-line="181" selection-start-column="9" selection-end-line="181" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -153,7 +149,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542840977586" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542843149338" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
@@ -202,12 +198,12 @@
       <updated>1542746081790</updated>
       <workItem from="1542746084996" duration="5109000" />
       <workItem from="1542829243951" duration="8028000" />
-      <workItem from="1542838150229" duration="3187000" />
+      <workItem from="1542838150229" duration="4996000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16324000" />
+    <option name="totallyTimeSpent" value="18133000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -270,8 +266,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/fileChecker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="108" column="33" lean-forward="true" selection-start-line="108" selection-start-column="33" selection-end-line="108" selection-end-column="33" />
+        <state relative-caret-position="536">
+          <caret line="181" column="9" lean-forward="true" selection-start-line="181" selection-start-column="9" selection-end-line="181" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

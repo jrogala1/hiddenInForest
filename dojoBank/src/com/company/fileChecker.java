@@ -7,6 +7,7 @@ public class fileChecker {
 
     private final String file;
     private final String templateFile;
+    private String[] fitDigits;
 
     fileChecker(String file, String digitTemplate)
     {
@@ -41,6 +42,7 @@ public class fileChecker {
         String[] fileContent = readLines(sourceFile);
         String[] templateFileContent = readLines(templateFile);
         String[] templateNumbers = parseTemplate(templateFileContent);
+        //String[] fitNumbers = tryToFit(templateFileContent);
 
         for (int lineIndex = 0; lineIndex < fileContent.length; lineIndex += 4) {
             String[] accountEntry = new String[3];
@@ -55,10 +57,36 @@ public class fileChecker {
         return accountNumbers;
     }
 
+    private String[] tryToFit(String[] templateFileContent) {
+
+        String[] templateNumbers = new String[(templateFileContent.length)/3];
+        int j = 0;
+        int lineLength = 3;
+
+        for (int i = 0; i < templateFileContent.length; i += 4 ) {
+            String[] fitDigits = new String[3];
+
+          //  if(templateFileContent[i].length() > lineLength) {
+              //  while (templateFileContent[i].length() > lineLength) {
+                    lineLength += 3;
+                    fitDigits[0] = templateFileContent[i].substring(lineLength, lineLength + 3);
+                    fitDigits[1] = templateFileContent[i + 1].substring(lineLength, lineLength + 3);
+                    fitDigits[2] = templateFileContent[i + 2].substring(lineLength, lineLength + 3);
+             //   }
+              //  lineLength = 3;
+                templateNumbers[j] = (String.join(",", fitDigits));
+                System.out.println(templateNumbers[j]);
+                j++;
+           // }
+        }
+        return templateNumbers;
+    }
+
     private String[] parseTemplate(String[] templateFileContent) {
 
         String[] templateNumbers = new String[10];
         int j = 0;
+        int lineLength = 3;
 
         for (int i = 0; i < templateFileContent.length; i += 4 ) {
             String[] digitAsRows = new String[3];
@@ -147,6 +175,8 @@ public class fileChecker {
             return "8";
         } else if (digitAsRows.equals(templateNumbers[9])) {
             return "9";
+       // } else if (digitAsRows.equals(fitNumbers[0])) {
+       //     return "test";
         } else {
             return "?";
         }
