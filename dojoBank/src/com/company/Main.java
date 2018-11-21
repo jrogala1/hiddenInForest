@@ -11,8 +11,7 @@ public class Main {
 
         String file = "G:/Users/Jakub/Documents/GitHub/wszibjava/dojoBank/src/com/company/bank_ocr_dojo_us1"; //Enter file location in this line
         String digitsTemplate = "G:/Users/Jakub/Documents/GitHub/wszibjava/dojoBank/src/com/company/digits"; //Enter file location in this line
-        //AccountReader reader = new AccountReader(file);
-        //System.out.println(reader.GetAllAccounts());
+        
         try
         {
             fileChecker filechecker = new fileChecker(file,digitsTemplate);

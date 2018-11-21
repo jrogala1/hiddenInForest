@@ -50,7 +50,8 @@ public class fileChecker {
 
             accountNumbers.add(getNumbersFromEntry(accountEntry,templateNumbers));
         }
-        System.out.println(Arrays.toString(accountNumbers.toArray()));
+        //System.out.println(Arrays.toString(accountNumbers.toArray()));
+        System.out.println(accountNumbers);
         return accountNumbers;
     }
 
@@ -75,7 +76,7 @@ public class fileChecker {
 
     private static String getNumbersFromEntry(String[] accountEntry, String[] templateNumbers) {
 
-        StringBuilder stringbuilder = new StringBuilder();
+        String accountNumber[] = new String[9];
         String digit;
         for (int digitIndex = 0; digitIndex < 9; digitIndex++) {
             String[] digitAsRows = new String[3];
@@ -85,11 +86,11 @@ public class fileChecker {
             digitAsRows[1] = accountEntry[1].substring(StartIndex, StartIndex + 3);
             digitAsRows[2] = accountEntry[2].substring(StartIndex, StartIndex + 3);
             digit = String.join(",",digitAsRows);
-            stringbuilder.append(getDigit(digit, templateNumbers));
+            accountNumber[digitIndex] = (getDigit(digit, templateNumbers));
 
         }
 
-        return stringbuilder.toString();
+        return accountNumber.toString();
     }
 
     private static String getDigit(String digitAsRows, String[] templateNumbers) {
@@ -115,7 +116,7 @@ public class fileChecker {
         } else if (digitAsRows.equals(templateNumbers[9])) {
             return "9";
         } else {
-            throw new IllegalArgumentException("Digit not found: " + digitAsRows);
+            return "?";
         }
     }
 
