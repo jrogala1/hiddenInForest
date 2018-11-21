@@ -90,7 +90,39 @@ public class fileChecker {
 
         }
 
-        return accountNumber.toString();
+       // System.out.println(checksum(accountNumber));
+
+        System.out.println(Arrays.toString(accountNumber));
+        return checksum(accountNumber);
+    }
+
+    private static String checksum(String[] accountNumber) {
+
+        int position = 1;
+        int checksum = 0;
+        String result = String.join("",accountNumber);
+
+        for ( String number : accountNumber )
+        {
+            if(number == "?")
+            {
+                result += " ILL";
+                return result;
+            } else {
+                int digitnumber = Integer.parseInt(number);
+                checksum = checksum + (position * digitnumber);
+                System.out.println(checksum);
+                position++;
+            }
+        }
+        if((checksum % 11) == 0)
+        {
+            return result;
+        } else
+        {
+            result += " ERR";
+            return result;
+        }
     }
 
     private static String getDigit(String digitAsRows, String[] templateNumbers) {
