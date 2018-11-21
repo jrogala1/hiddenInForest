@@ -77,7 +77,7 @@ public class fileChecker {
 
         StringBuilder stringbuilder = new StringBuilder();
         String digit;
-        for (int digitIndex = 0; digitIndex < 3; digitIndex++) {
+        for (int digitIndex = 0; digitIndex < 9; digitIndex++) {
             String[] digitAsRows = new String[3];
 
             int StartIndex = digitIndex * 3;
