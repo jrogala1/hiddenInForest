@@ -5,9 +5,13 @@ import java.util.*;
 
 public class fileChecker {
 
+    private static String[] genNumbers;
     private final String file;
     private final String templateFile;
     private String[] fitDigits;
+    private int figureIndex = 0;
+
+
 
     fileChecker(String file, String digitTemplate)
     {
@@ -43,7 +47,7 @@ public class fileChecker {
         String[] templateFileContent = readLines(templateFile);
         String[] templateNumbers = parseTemplate(templateFileContent);
         //String[] fitNumbers = tryToFit(templateFileContent);
-
+        //System.out.println(fileContent.length);
         for (int lineIndex = 0; lineIndex < fileContent.length; lineIndex += 4) {
             String[] accountEntry = new String[3];
             accountEntry[0] = fileContent[lineIndex];
@@ -52,8 +56,8 @@ public class fileChecker {
 
             accountNumbers.add(getNumbersFromEntry(accountEntry,templateNumbers));
         }
-        //System.out.println(Arrays.toString(accountNumbers.toArray()));
-        System.out.println(accountNumbers);
+        System.out.println(Arrays.toString(accountNumbers.toArray()));
+       // System.out.println(accountNumbers);
         return accountNumbers;
     }
 
@@ -102,7 +106,7 @@ public class fileChecker {
             return templateNumbers;
     }
 
-    private static String getNumbersFromEntry(String[] accountEntry, String[] templateNumbers) {
+    private String getNumbersFromEntry(String[] accountEntry, String[] templateNumbers) {
 
         String accountNumber[] = new String[9];
         String digit;
@@ -114,22 +118,22 @@ public class fileChecker {
             digitAsRows[1] = accountEntry[1].substring(StartIndex, StartIndex + 3);
             digitAsRows[2] = accountEntry[2].substring(StartIndex, StartIndex + 3);
             digit = String.join(",",digitAsRows);
-            accountNumber[digitIndex] = (getDigit(digit, templateNumbers));
+            accountNumber[digitIndex] = (getDigit(digit, templateNumbers, digitIndex));
 
         }
 
-       // System.out.println(checksum(accountNumber));
+        System.out.println(checksum(accountNumber));
 
         System.out.println(Arrays.toString(accountNumber));
         return checksum(accountNumber);
     }
 
-    private static String checksum(String[] accountNumber) {
+    private String checksum(String[] accountNumber) {
 
         int position = 1;
         int checksum = 0;
         String result = String.join("",accountNumber);
-
+        System.out.println(result);
         for ( String number : accountNumber )
         {
             if(number == "?")
@@ -143,17 +147,41 @@ public class fileChecker {
                 position++;
             }
         }
+
         if((checksum % 11) == 0)
         {
+            figureIndex = 0;
             return result;
-        } else
-        {
+        }
+        else if (figureIndex < 9 ) {
+            System.out.println("probuje zmienic liczbe" + accountNumber[figureIndex]);
+            accountNumber[figureIndex] = changeFigure(accountNumber[figureIndex]);
+            System.out.println("nowa liczba " + accountNumber[figureIndex]);
+            figureIndex++;
+            return checksum(accountNumber);
+        } else {
+            figureIndex = 0;
             result += " ERR";
             return result;
         }
     }
 
-    private static String getDigit(String digitAsRows, String[] templateNumbers) {
+    private String changeFigure(String number) {
+
+
+        System.out.println("weszło " + number);
+            if (number == "0") number = "8";
+            else if (number == "1") number = "7";
+            else if (number == "0")  number = "8";
+            else if (number == "9")  number = "8";
+            else if (number == "5")  number = "9";
+            else number = number;
+        return number;
+    }
+
+    private static String getDigit(String digitAsRows, String[] templateNumbers, int digitIndex) {
+
+
 
         if (digitAsRows.equals(templateNumbers[0])) {
             return "0";
@@ -178,6 +206,9 @@ public class fileChecker {
        // } else if (digitAsRows.equals(fitNumbers[0])) {
        //     return "test";
         } else {
+            //System.out.println("Digit index:  " + digitIndex);
+                //genNumbers[digitIndex] = digitAsRows;
+
             return "?";
         }
     }

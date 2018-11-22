@@ -9,7 +9,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        String file = "G:/Users/Jakub/Documents/GitHub/wszibjava/dojoBank/src/com/company/bank_ocr_dojo_us1"; //Enter file location in this line
+        String file = "G:/Users/Jakub/Documents/GitHub/wszibjava/dojoBank/src/com/company/bank_ocr_dojo_us4"; //Enter file location in this line
         String digitsTemplate = "G:/Users/Jakub/Documents/GitHub/wszibjava/dojoBank/src/com/company/digits"; //Enter file location in this line
 
         try
